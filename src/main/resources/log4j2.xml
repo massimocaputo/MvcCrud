@@ -12,8 +12,8 @@
         </Console>
         <!-- File Appender -->
         <RollingFile name="File"
-                     fileName="${APP_LOG_ROOT}/MvcCrudExample/application.log"
-                     filePattern="${APP_LOG_ROOT}/MvcCrudExample/application-%d{yyyy-MM-dd}-%i.log.gz"
+                     fileName="${APP_LOG_ROOT}/MvcCrud/application.log"
+                     filePattern="${APP_LOG_ROOT}/MvcCrud/application-%d{yyyy-MM-dd}-%i.log.gz"
                      ignoreExceptions="false">
             <PatternLayout pattern="${LOG_PATTERN}" />
             <Policies>
@@ -24,7 +24,7 @@
             <DefaultRolloverStrategy>
                 <Delete basePath="${baseDir}" maxDepth="2">
                     <IfFileName
-                            glob="${APP_LOG_ROOT}/MvcCrudExample/application.*.log.gz" />
+                            glob="${APP_LOG_ROOT}/MvcCrud/application.*.log.gz" />
                     <IfLastModified age="20d" />
                 </Delete>
             </DefaultRolloverStrategy>
