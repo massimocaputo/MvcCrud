@@ -49,7 +49,7 @@ public class LocationController {
         } catch (LocationNotFoundException e) {
             log.error(e.getMessage());
             attributes.addAttribute("message", e.getMessage());
-            page="redirect:getAllInvoices";
+            page="redirect:getAllLocation";
         }
         log.info("page: {}", page);
         return page;
@@ -57,12 +57,13 @@ public class LocationController {
 
 
     @PostMapping("/update")
-    public String updateInvoice(@ModelAttribute LocationDto locationDto, RedirectAttributes attributes
+    public String updateLocation(@ModelAttribute LocationDto locationDto, RedirectAttributes attributes
     ) {
-//        service.updateInvoice(invoice);
-//        Long id = invoice.getId();
-//        attributes.addAttribute("message", "Invoice with id: '"+id+"' is updated successfully !");
-        return "redirect:getAllInvoices";
+        log.info("Init updateLocation");
+        LocationDto dto = locationService.updateLocation(locationDto);
+        Short id = dto.getId();
+        attributes.addAttribute("message", "Location with id: '"+id+"' is updated successfully !");
+        return "redirect:getAllLocation";
     }
 
 

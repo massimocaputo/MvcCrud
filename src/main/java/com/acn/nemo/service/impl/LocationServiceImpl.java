@@ -9,11 +9,15 @@ import com.acn.nemo.service.LocationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Location service.
+ */
 @Service
 @Slf4j
 public class LocationServiceImpl implements LocationService {
@@ -73,11 +77,17 @@ public class LocationServiceImpl implements LocationService {
 
     }
 
-    /**
-     * @param location
-     */
+    @Transactional(readOnly = false)
     @Override
-    public void updateLocation(LocationDto location) {
+    public LocationDto updateLocation(LocationDto locationDto) {
+        log.info("Init updateLocation");
 
+        if(null != locationDto){
+            Location newLocation = locationRepository.save(locationMapper.dtoToEntity(locationDto));
+            log.info("End updateLocation");
+            return locationMapper.entityToDto(newLocation);
+        }else {
+            return null;
+        }
     }
 }

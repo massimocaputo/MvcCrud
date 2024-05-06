@@ -10,5 +10,5 @@ public interface LocationService {
     public List<LocationDto> getLocations();
     public LocationDto getLocationById(Short id);
     public void deleteLocationById(Short id);
-    public void updateLocation(LocationDto location);
+    public LocationDto updateLocation(LocationDto location);
 }
